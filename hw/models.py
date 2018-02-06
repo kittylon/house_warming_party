@@ -1,30 +1,40 @@
 from django.db import models
 from django.utils import timezone
 
+class Person(models.Model):
+    role = models.CharField(max_length=50, default='Guest')
+    name = models.CharField(max_length=70)
+    mail = models.EmailField(max_length=254)
+    mobile = models.IntegerField(max_length=15)
+
+    def publish(self):
+        self.save()
+
+class Event(models.Model):
+    name = models.CharField(max_length=50, default='Fiesta')
+    date = models.DateTimeField(blank=True, null=False))
+    place = models.URLField()
+
+    def publish(self):
+        self.save()
 
 class Invitation(models.Model):
-    guest = models.CharField(max_length=200, default='Invitadillo')
     descr = models.TextField()
-    link = models.CharField(max_length=200)
-    event_date = models.DateTimeField(
-            blank=True, null=True)
-    place = models.CharField(max_length=200, default='h2m')
 
     def publish(self):
         self.save()
 
-    def __str__(self):
-        return self.title
-
-class Guest(models.Model):
-    guest_type = models.CharField(max_length=200, default='single')
-    name = models.CharField(max_length=100)
-    e_mail = models.EmailField(max_length=70,blank=True)
-    mobile = models.CharField(max_length=20)
-    invitation = models.CharField(max_length=200)
+class Confirmacion(models.Model):
+    status = models.CharField(max_length=200)
+    invitation = models.ForeignKey(Invitation, on_delete=models.,)
 
     def publish(self):
         self.save()
 
-    def __str__(self):
-        return self.title
+class Gift(models.Model):
+    name = models.CharField(max_length=200)
+    status = models.CharField(max_length=200)
+    price = models.DecimalField(max_digits=8, decimal_places=3)
+
+    def publish(self):
+        self.save()
