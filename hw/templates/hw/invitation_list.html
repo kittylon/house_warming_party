@@ -1,22 +1,10 @@
-{% load static %}
-<html>
-    <head>
-        <title>HW Party</title>
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" type="text/css">
-        <link rel="stylesheet" href="{% static "css/hw.css" %}">
-    </head>
-    <body>
-      <div class="page-header">
-          <h1><a href="/">House Warming Party</a></h1>
-      </div>
+{% extends 'hw/base.html' %}
 
-      {% for post in posts %}
-      <div>
-          <p>About: {{ invitation.descr }}</p>
-          <h1><a href="">{{ invitation.event }}</a></h1>
-      </div>
-      {% endfor %}
-    </body>
-</html>
+  {% block content %}
+    {% for invitation in invitations %}
+    <div class="invitation">
+        <h1><a href="{% url 'invitation_detail' pk=invitation.pk %}">{{ invitation.pk }}</a></h1>
+        <p>{{ invitation.descr|linebreaksbr }}</p>
+    </div>
+    {% endfor %}
+{% endblock %}

@@ -21,7 +21,7 @@ class Person(models.Model):
     role = models.CharField(max_length=50, default='Invitado')
     name = models.CharField(max_length=70)
     mail = models.EmailField(max_length=254)
-    mobile = models.IntegerField(max_length=15)
+    mobile = models.IntegerField()
     invitation = models.ForeignKey(Invitation,models.SET_NULL,blank=True,null=True)
 
     def publish(self):

@@ -1,8 +1,46 @@
 h1 a {
-    color: #5d176d;
+    color: #6600ff  ;
+    font-family: 'Lobster';
+}
+h2 a{
+    color: #6f10a5  ;
     font-family: 'Lobster';
 }
 
 body {
     padding-left: 15px;
+}
+
+.page-header {
+  background: #466368;
+  background: linear-gradient(to right bottom, #3af4ee, #6f10a5);
+}
+
+.page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
+    color: #ffffff;
+    font-size: 36pt;
+    text-decoration: none;
+}
+
+invitation-form textarea, .invitation-form input {
+    width: 100%;
+}
+
+.top-menu, .top-menu:hover, .top-menu:visited {
+    color: #ffffff;
+    float: right;
+    font-size: 26pt;
+    margin-right: 20px;
+}
+
+.invitation {
+    margin-bottom: 70px;
+}
+
+.invitation h1 a, .invitation h1 a {
+    color: #6600ff;
+}
+
+.event {
+    color: #828282;
 }
