@@ -1,0 +1,11 @@
+{% extends "hw/base.html" %}
+{% block title %}
+  HWP Invitation
+{% endblock %}
+{% block content %}
+    {% for gift in gifts %}
+    <hr>
+      {% include "hw/gift.html"%}
+    <hr>
+    {% endfor %}
+{% endblock  %}

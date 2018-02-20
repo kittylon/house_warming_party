@@ -38,6 +38,7 @@ class Gift(models.Model):
     name = models.CharField(max_length=200)
     status = models.CharField(max_length=200)
     price = models.DecimalField(max_digits=8, decimal_places=3)
+    pic = models.ImageField(upload_to='hw/static/images', default='/hw/static/images/pokeball.png')
     confirmation = models.ForeignKey(Confirmation, models.SET_NULL,blank=True,null=True)
 
     def publish(self):

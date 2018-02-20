@@ -1,23 +1,11 @@
-{% load static %}
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>HW Party</title>
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" type="text/css">
-        <link rel="stylesheet" href="{% static "css/hw.css" %}">
-    </head>
-    <body>
-      <div class="page-header">
-          <h1><a href="/">House Warming Party</a></h1>
-      </div>
-      <div>
-          <div>
-              <div>
-              {% block content %}
-              {% endblock %}
-              </div>
-          </div>
-      </div>
-    </body>
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %} HW Party! {% endblock %}</title>
+  </head>
+  <body>
+    {% block content %}
+    {% endblock %}
+  </body>
 </html>

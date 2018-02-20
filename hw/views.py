@@ -1,12 +1,17 @@
 from django.shortcuts import render
 from .models import Invitation
 from django.shortcuts import render, get_object_or_404
+from django.views.generic import TemplateView
 
-# Create your views here.
-def invitation_list(request):
-    invitations = Invitation.objects.all()
-    return render(request, 'hw/invitation_list.html', {'invitations': invitations})
+#not using function anymore, we use views instead (platzi)
+class HomeView(TemplateView):
+    template_name = 'hw/home.html'
 
-def invitation_detail(request, pk):
-    invitation = get_object_or_404(Invitation, pk=pk)
-    return render(request, 'hw/invitation_detail.html',{'invitation': invitation})
+class GiftsView(TemplateView):
+    template_name = 'hw/gifts.html'
+
+class GuestView(TemplateView):
+    template_name = 'hw/guests.html'
+
+class InvitationView(TemplateView):
+    template_name = 'hw/invitation_detail.html'

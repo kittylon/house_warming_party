@@ -1,0 +1,11 @@
+{% extends "hw/base.html" %}
+{% block title %}
+  Guest List
+{% endblock %}
+{% block content %}
+    {% for guest in guests %}
+    <hr>
+      {% include "hw/guest.html"%}
+    <hr>
+    {% endfor %}
+{% endblock  %}

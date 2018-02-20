@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'c9!jcgfb%o_rl+zpk@4f=(dm-kzx-cx61-oa=st7w%7tm=gkqe'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', '<tu-usuario>.pythonanywhere.com']
 
@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'hw',
+    'hw.apps.HwConfig',
 ]
 
 MIDDLEWARE = [
@@ -63,6 +63,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'hw.context_processor.invitations_data',
+                'hw.context_processor.gifts_data',
+                'hw.context_processor.guests_data',
             ],
         },
     },
@@ -120,3 +123,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+try:
+    from hwproject.local_settings import *
+except Exception as e:
+    raise
