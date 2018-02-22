@@ -28,7 +28,8 @@ class Person(models.Model):
         self.save()
 
 class Confirmation(models.Model):
-    status = models.CharField(max_length=200)
+    STATUS_CHOICES = (('Going','Y'), ('Not going','N'))
+    status = models.CharField(max_length=11, choices=STATUS_CHOICES)
     invitation = models.ForeignKey(Invitation, models.SET_NULL,blank=True,null=True)
 
     def publish(self):

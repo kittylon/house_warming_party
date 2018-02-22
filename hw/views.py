@@ -7,11 +7,17 @@ from django.views.generic import TemplateView
 class HomeView(TemplateView):
     template_name = 'hw/home.html'
 
-class GiftsView(TemplateView):
-    template_name = 'hw/gifts.html'
+class GiftView(TemplateView):
+    template_name = 'hw/gift.html'
+
+class GiftNameView(TemplateView):
+    template_name = 'hw/gift_name.html'
 
 class GuestView(TemplateView):
-    template_name = 'hw/guests.html'
+    template_name = 'hw/guest.html'
+
+class GuestInvIdView(TemplateView):
+    template_name = 'hw/guest_inv_id.html'
 
 class InvitationView(TemplateView):
     template_name = 'hw/invitation_detail.html'

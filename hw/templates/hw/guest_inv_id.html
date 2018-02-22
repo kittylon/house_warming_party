@@ -4,7 +4,7 @@
 {% endblock %}
 {% block content %}
 {% for guest in guests %}
-  {% if guest.name|lower == name|lower %}
+  {% if guest.invitation == invitation %}
     <h1>Nombre: {{guest.name|title}}</h1>
     <p>Rol: {{guest.role}}</p>
     <p>celular: {{guest.mobile}}</p>

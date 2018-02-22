@@ -1,7 +1,7 @@
 from django.contrib import  admin
 from django.urls import path
 from hw.views import (
-HomeView, GiftsView, InvitationView, GuestView
+HomeView, GiftView, InvitationView, GuestView, GuestInvIdView, GiftNameView
 )
 
 #djangogirls
@@ -11,8 +11,11 @@ HomeView, GiftsView, InvitationView, GuestView
 
 urlpatterns = [
     path("", HomeView.as_view()),
-    path('home/', HomeView.as_view()),
-    path('gift/', GiftsView.as_view()),
-    path('guest/', GuestView.as_view()),
-    # path('invitation/<guest>', InvitationView.as_view())
+    path('home/', HomeView.as_view(), name="home"),
+    path('gift/', GiftView.as_view(), name="gift"),
+    path('gift/<name>', GiftNameView.as_view(), name="gift_name"),
+    path('guest/', GuestView.as_view(), name="guest"),
+    #Validates if invitation_id is an int
+    path('guest/<int:invitation>', GuestInvIdView.as_view(), name="guest_inv_id"),
+    path('guest/<name>', GuestView.as_view(), name="guest_name")
 ]
