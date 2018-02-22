@@ -29,6 +29,7 @@ class Person(models.Model):
 
 class Confirmation(models.Model):
     STATUS_CHOICES = (('Going','Y'), ('Not going','N'))
+
     status = models.CharField(max_length=11, choices=STATUS_CHOICES)
     invitation = models.ForeignKey(Invitation, models.SET_NULL,blank=True,null=True)
 
@@ -36,8 +37,10 @@ class Confirmation(models.Model):
         self.save()
 
 class Gift(models.Model):
+    STATUS_CHOICES = (('Abailable','A'), ('Taken','T'))
+
     name = models.CharField(max_length=200)
-    status = models.CharField(max_length=200)
+    status = models.CharField(max_length=15, choices=STATUS_CHOICES)
     price = models.DecimalField(max_digits=8, decimal_places=3)
     pic = models.ImageField(upload_to='hw/static/images', default='/hw/static/images/pokeball.png')
     confirmation = models.ForeignKey(Confirmation, models.SET_NULL,blank=True,null=True)
