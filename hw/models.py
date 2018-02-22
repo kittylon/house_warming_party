@@ -17,7 +17,7 @@ class Invitation(models.Model):
     def publish(self):
         self.save()
 
-class Person(models.Model):
+class Guest(models.Model):
     role = models.CharField(max_length=50, default='Invitado')
     name = models.CharField(max_length=70)
     mail = models.EmailField(max_length=254)
@@ -37,7 +37,7 @@ class Confirmation(models.Model):
         self.save()
 
 class Gift(models.Model):
-    STATUS_CHOICES = (('Abailable','A'), ('Taken','T'))
+    STATUS_CHOICES = (('Available','A'), ('Taken','T'))
 
     name = models.CharField(max_length=200)
     status = models.CharField(max_length=15, choices=STATUS_CHOICES)
