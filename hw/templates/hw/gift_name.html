@@ -4,11 +4,8 @@
 {% endblock %}
 {% block content %}
 {% for gift in gifts %}
-  {% if gift.name == name %}
-    <h1>Nombre: {{gift.name|title}}</h1>
-    <p>Estado: {{gift.status}}</p>
-    <p>Precio: {{gift.price}}</p>
-    <br>
+  {% if gift.name|lower == name|lower %}
+    {% include 'hw/gift.html' %}
   {% endif %}
 {% endfor %}
 {% endblock  %}
