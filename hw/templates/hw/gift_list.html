@@ -6,9 +6,8 @@
     {% for gift in gifts %}
     <hr>
       {% include "hw/gift.html"%}
-      <p> <a href="{{ gift.detail_url }}">Detalle</a></p>
     <hr>
     {% endfor %}
-<p><a href="{% url "gift" %}">Ir a los regalos</a> </p>
-<p><a href="{% url "guest" %}">Ir a mi invitación</a> </p>
+<p><a href="{% url "gift_name" name="silla" %}">Ir a los regalos</a> </p>
+<p><a href="{% url "guest_name" name="jeison" %}">Ir a mi invitación</a> </p>
 {% endblock  %}

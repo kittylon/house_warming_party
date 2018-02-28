@@ -6,5 +6,6 @@
     <h1>Nombre: {{gift.name|title}}</h1>
     <p>Estado: {{gift.status}}</p>
     <p>Precio: {{gift.price}}</p>
+    <p><a href="{% url "gift_name" name=gift.name %}">Detalle</a></p>
     <br>
 {% endblock  %}

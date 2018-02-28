@@ -1,0 +1,14 @@
+{% extends "hw/base.html" %}
+{% block title %}
+{{name}}
+{% endblock %}
+{% block content %}
+{% for gift in gifts %}
+  {% if gift.name == name %}
+    <h1>Nombre: {{gift.name|title}}</h1>
+    <p>Estado: {{gift.status}}</p>
+    <p>Precio: {{gift.price}}</p>
+    <br>
+  {% endif %}
+{% endfor %}
+{% endblock  %}
