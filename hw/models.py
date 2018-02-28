@@ -37,6 +37,9 @@ class Guest(models.Model):
     def __str__(self):
         return self.name
 
+    def is_invited(self):
+        return self.mail
+
 class Confirmation(models.Model):
     STATUS_CHOICES = (('Going','Y'), ('Not going','N'))
 
