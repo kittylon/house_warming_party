@@ -1,0 +1,7 @@
+{% extends 'hw/base.html' %}
+{% block content%}
+{% for guest in object_list %}
+  {% include "hw/guest.html"%}
+  {% include "hw/gift_list.html"%}
+{% endfor %}
+{% endblock %}

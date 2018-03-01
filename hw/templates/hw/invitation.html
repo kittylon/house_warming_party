@@ -1,9 +1,9 @@
 {% extends "hw/base.html" %}
   {% block title %}
-    Guest Info
+    You're invited!
   {% endblock %}
 {% block content %}
-    <h1>Hola {{guest.name|title}}!</h1>
-    <p>{{guest.invitation}}</p>
+    <h1>{{invitation.event|title}}</h1>
+    <p>{{guest.descr}}</p>
     <br>
 {% endblock  %}

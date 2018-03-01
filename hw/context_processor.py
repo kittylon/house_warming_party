@@ -1,5 +1,5 @@
 from django.urls import reverse
-from hw.models import Event, Invitation, Guest, Confirmation, Gift
+from hw.models import Invitation, Guest, Gift
 
 def guests_data(request):
     guests = Guest.objects.all()

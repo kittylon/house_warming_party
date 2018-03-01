@@ -3,11 +3,11 @@
   HWP Invitation
 {% endblock %}
 {% block content %}
+  No nos casamos pero tenemos lista de regalos <i class="em em-beetle"></i>:
     {% for gift in gifts %}
     <hr>
       {% include "hw/gift.html"%}
     <hr>
     {% endfor %}
 <p><a href="{% url "gift_name" name="silla" %}">Ir a los regalos</a> </p>
-<p><a href="{% url "guest_name" name="jeison" %}">Ir a mi invitación</a> </p>
 {% endblock  %}

@@ -5,8 +5,8 @@ function check_mail(){
     'mail' : mail,
   })
   .then(function (response) {
-    console.log(response);
-    alert("Welcome mother foca")
+    console.log(response.data.url);
+    window.location = response.data.url;
   })
   .catch(function (error) {
     const $error = document.getElementById("message_error")
