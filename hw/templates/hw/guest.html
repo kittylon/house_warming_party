@@ -2,8 +2,10 @@
   {% block title %}
     Guest Info
   {% endblock %}
+  {% with guest_id=guest.pk %}
+  {% endwith %}
 {% block content %}
     <h1>Hola {{guest.name|title}}!</h1>
     <p>{{guest.invitation}}</p>
-    <br>
+    {{guest.id}}
 {% endblock  %}

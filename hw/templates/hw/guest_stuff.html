@@ -1,7 +1,12 @@
 {% extends 'hw/base.html' %}
 {% block content%}
+{% block js %}
+<script src="/static/js/gift.js"></script>
+{% endblock %}
 {% for guest in object_list %}
   {% include "hw/guest.html"%}
+  <div class="columns">
   {% include "hw/gift_list.html"%}
+</div>
 {% endfor %}
 {% endblock %}
