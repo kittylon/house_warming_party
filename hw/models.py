@@ -33,6 +33,7 @@ class Gift(models.Model):
     status = models.CharField(max_length=15, choices=STATUS_CHOICES)
     price = models.DecimalField(max_digits=8, decimal_places=3)
     pic = models.ImageField()
+    guest = models.ForeignKey(Guest,models.SET_NULL,blank=True,null=True)
 
     def publish(self):
         self.save()

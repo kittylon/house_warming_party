@@ -6,8 +6,12 @@
     <h1>Nombre: {{gift.name|title}}</h1>
     <p>Estado: {{gift.status}}</p>
     <p>Precio: {{gift.price}}</p>
-    <a class="button is-success"> <i class="fas fa-check"></i>Agregar</a>
-    <a class="button is-danger is-outlined">Eliminar<i class="fas fa-times"></i></a>
+    {% if gift.status == 'Available'%}
+      <a class="button is-success"> <i class="fas fa-check"></i>Agregar</a>
+      <a class="button is-danger is-outlined">Eliminar<i class="fas fa-times"></i></a>
+    {% else %}
+    <p> lo va a llevar {{gift.guest}}</p>
+    {% endif %}
     <p><a href="{% url "gift_name" name=gift.name %}">Detalle</a></p>
     <br>
 {% endblock  %}
