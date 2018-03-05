@@ -11,7 +11,7 @@ function check_mail(){
   .catch(function (error) {
     const $error = document.getElementById("message_error")
     if ($error) {
-      $error.textContent = "No estas invitado :("
+      $error.textContent = "No estajs invitado :("
     }
     console.log("Ich bin eine schöne error");
   });
