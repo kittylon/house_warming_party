@@ -5,8 +5,10 @@
 {% endblock %}
 {% for guest in object_list %}
   {% include "hw/guest.html"%}
-  <div class="columns">
-  {% include "hw/gift_list.html"%}
-</div>
+  {% if guest.invitation.inv_type != 'Giver'%}
+  <a class="button is-primary is-outlined" onclick="confirm_gifts({{guest.id}})">Confirmar</a>
+  {% else %}
+  <i class="em em-beetle"></i>
+  {% endif %}
 {% endfor %}
 {% endblock %}

@@ -8,8 +8,10 @@
     <p>Estado: {{gift.status}}</p>
     <p>Precio: {{gift.price}}</p>
     {% if gift.status == 'Available'%}
-      <a class="button is-success" onclick="add_gift({{gift.pk}},{{guest.id}})"> <i class="fas fa-check"></i>Agregar</a>
-      <a class="button is-danger is-outlined">Eliminar<i class="fas fa-times"></i></a>
+      <a class="button is-success" id="add_{{gift.pk}}" onclick="add_gift({{gift.pk}})">
+      <i class="fas fa-check"></i>Agregar</a>
+      <a class="button is-danger is-outlined hidden" id="rmv_{{gift.pk}}" onclick="remove_gift({{gift.pk}})">
+      Eliminar<i class="fas fa-times"></i></a>
     {% else %}
     <p> lo va a llevar {{gift.guest}}</p>
     {% endif %}

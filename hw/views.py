@@ -37,15 +37,29 @@ class GuestStuffView(ListView):
 
     def post(self, request, *args, **kwargs):
         dict_ids = json.loads(request.body.decode('utf-8'))
-        gift_id = dict_ids['gift_id']
+        print('....................................')
+        gift_list = dict_ids['gifts']
         guest_id = dict_ids['guest_id']
         guest = get_object_or_404(Guest, pk=guest_id)
-        gift = get_object_or_404(Gift, pk=gift_id)
-        gift.status = 'Taken'
-        gift.guest = guest
-        gift.save(update_fields=['status', 'guest'])
+        print(gift_list)
+
+        for gift_id in gift_list:
+            gift = get_object_or_404(Gift, pk=gift_id)
+            gift.status = 'Taken'
+            gift.guest = guest
+            gift.save(update_fields=['status', 'guest'])
+
         response = {'status': 0, 'message': 'Gift added!' }
         return HttpResponse(json.dumps(response), content_type='application/json')
+        # gift_id = dict_ids['gift_id']
+        # guest_id = dict_ids['guest_id']
+        # guest = get_object_or_404(Guest, pk=guest_id)
+        # gift = get_object_or_404(Gift, pk=gift_id)
+        # gift.status = 'Taken'
+        # gift.guest = guest
+        # gift.save(update_fields=['status', 'guest'])
+        # response = {'status': 0, 'message': 'Gift added!' }
+        # return HttpResponse(json.dumps(response), content_type='application/json')
 
 class ControlView(TemplateView):
     template_name = "hw/control.html"

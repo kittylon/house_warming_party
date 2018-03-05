@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 
 class Invitation(models.Model):
-    TYPE_CHOICES = (('Giver','G'), ('Single','S'), ('Couple', 'S'))
+    TYPE_CHOICES = (('Giver','G'), ('Single','S'), ('Couple', 'C'))
 
     inv_type = models.CharField(max_length=10, choices=TYPE_CHOICES)
     descr = models.TextField()

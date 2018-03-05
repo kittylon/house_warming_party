@@ -11,6 +11,10 @@ body {
     padding-left: 15px;
 }
 
+.hidden{
+  display: none !important;
+}
+
 .page-header {
   background: #466368;
   background: linear-gradient(to right bottom, #3af4ee, #6f10a5);
