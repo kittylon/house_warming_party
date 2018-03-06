@@ -19,6 +19,8 @@ class InvitationView(TemplateView):
     template_name = 'hw/invitation_detail.html'
     model = Invitation
 
+
+
 class GiftSearchView(ListView):
     template_name = "hw/gift_search.html"
     model = Gift
@@ -26,6 +28,14 @@ class GiftSearchView(ListView):
     def get_queryset(self):
         query = self.kwargs['query']
         return Gift.objects.filter(price__lte=query)
+
+class ConfirmationView(ListView):
+    template_name ="hw/confirmation.html"
+    model = Gift
+
+    def get_queryset(self):
+        query = self.kwargs['query']
+        return Gift.objects.filter(guest=query)
 
 class GuestStuffView(ListView):
     template_name = "hw/guest_stuff.html"
@@ -37,29 +47,18 @@ class GuestStuffView(ListView):
 
     def post(self, request, *args, **kwargs):
         dict_ids = json.loads(request.body.decode('utf-8'))
-        print('....................................')
-        gift_list = dict_ids['gifts']
         guest_id = dict_ids['guest_id']
+        gift_list = dict_ids['gifts']
         guest = get_object_or_404(Guest, pk=guest_id)
-        print(gift_list)
-
         for gift_id in gift_list:
             gift = get_object_or_404(Gift, pk=gift_id)
             gift.status = 'Taken'
             gift.guest = guest
             gift.save(update_fields=['status', 'guest'])
 
-        response = {'status': 0, 'message': 'Gift added!' }
+        url = '/confirmation/' + str(guest.pk)
+        response = {'status': 0, 'url': url }
         return HttpResponse(json.dumps(response), content_type='application/json')
-        # gift_id = dict_ids['gift_id']
-        # guest_id = dict_ids['guest_id']
-        # guest = get_object_or_404(Guest, pk=guest_id)
-        # gift = get_object_or_404(Gift, pk=gift_id)
-        # gift.status = 'Taken'
-        # gift.guest = guest
-        # gift.save(update_fields=['status', 'guest'])
-        # response = {'status': 0, 'message': 'Gift added!' }
-        # return HttpResponse(json.dumps(response), content_type='application/json')
 
 class ControlView(TemplateView):
     template_name = "hw/control.html"
@@ -69,6 +68,12 @@ class ControlView(TemplateView):
         dict_mail = json.loads(request.body.decode('utf-8'))
         mail = dict_mail['mail']
         guest = get_object_or_404(Guest, mail=mail)
-        url = '/invitation/' + str(guest.pk)
+        gifts = Gift.objects.filter(guest_id=guest).count()
+        
+        if gifts > 0:
+            url = url = '/confirmation/' + str(guest.pk)
+        else:
+            url = '/invitation/' + str(guest.pk)
+
         response = {'status': 0, 'url': url }
         return HttpResponse(json.dumps(response), content_type='application/json')

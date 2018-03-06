@@ -18,7 +18,7 @@ class Guest(models.Model):
     mail = models.EmailField(max_length=254)
     mobile = models.IntegerField()
     going = models.BooleanField(default=True)
-    invitation = models.ForeignKey(Invitation,models.SET_NULL,blank=True,null=True)
+    invitation = models.ForeignKey(Invitation, models.SET_NULL, blank=True, null=True)
 
     def publish(self):
         self.save()
@@ -30,10 +30,10 @@ class Gift(models.Model):
     STATUS_CHOICES = (('Available','A'), ('Taken','T'))
 
     name = models.CharField(max_length=200)
-    status = models.CharField(max_length=15, choices=STATUS_CHOICES)
+    status = models.CharField(max_length=15, choices=STATUS_CHOICES, null=False)
     price = models.DecimalField(max_digits=8, decimal_places=3)
     pic = models.ImageField()
-    guest = models.ForeignKey(Guest,models.SET_NULL,blank=True,null=True)
+    guest = models.ForeignKey(Guest, models.SET_NULL, blank=True, null=True)
 
     def publish(self):
         self.save()

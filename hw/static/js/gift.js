@@ -1,4 +1,4 @@
-window.gifts = []
+var gifts = [];
 
 function hide_button(button_id){
   var bye_button = document.getElementById(button_id);
@@ -27,18 +27,14 @@ function remove_gift(gift_id){
 }
 
 function confirm_gifts(guest_id){
-  confirm("Confirmar " + gifts);
+  confirm("Confirmars " + gifts);
 
   axios.post('/invitation/' + guest_id + '/', {
     'guest_id': guest_id,
     'gifts' : gifts
   })
-  // .then(function (response) {
-  //   console.log(response.data.message);
-  //   alert(response.data.message);
-  // })
-  // .catch(function (error) {
-  //   alert("Something went wrong :'('");
-  //   console.log("Something went wrong");
-  // });
+  .then(function (response) {
+    console.log(response.data.url);
+    window.location = response.data.url;
+  })
 }

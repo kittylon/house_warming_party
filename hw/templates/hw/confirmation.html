@@ -1,0 +1,13 @@
+{% extends 'hw/base.html' %}
+{% block content%}
+{% block js %}
+<script src="/static/js/gift.js"></script>
+{% endblock %}
+Gracias por tu generosidad<i class="em em-santa"></i>
+{% for gift in object_list %}
+<div class="box">
+ <h1>{{gift.name|title}}</h1>
+</div>
+{% endfor %}
+Nos vemos en la fiesta!
+{% endblock %}
