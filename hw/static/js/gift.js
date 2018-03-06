@@ -1,4 +1,5 @@
-var gifts = [];
+window.gifts_to_add = [];
+window.gifts_to_remove = [];
 
 function hide_button(button_id){
   var bye_button = document.getElementById(button_id);
@@ -15,7 +16,8 @@ function add_gift(gift_id){
   var bye_button = "add_" + gift_id;
   hide_button(bye_button);
   show_button(hi_button);
-  gifts.push(gift_id);
+  gifts_to_add.push(gift_id);
+  gifts_to_remove.pop(gift_id);
 }
 
 function remove_gift(gift_id){
@@ -23,15 +25,18 @@ function remove_gift(gift_id){
   var bye_button = "rmv_" + gift_id;
   hide_button(bye_button);
   show_button(hi_button);
-  gifts.pop(gift_id);
+  gifts_to_add.pop(gift_id);
+  gifts_to_remove.push(gift_id);
 }
 
 function confirm_gifts(guest_id){
-  confirm("Confirmars " + gifts);
-
+  // confirm("Confirmars " + gifts_to_remove);
+  alert(gifts_to_add);
+  alert(gifts_to_remove);
   axios.post('/invitation/' + guest_id + '/', {
     'guest_id': guest_id,
-    'gifts' : gifts
+    'gifts_to_add' : gifts_to_add,
+    'gifts_to_remove': gifts_to_remove
   })
   .then(function (response) {
     console.log(response.data.url);

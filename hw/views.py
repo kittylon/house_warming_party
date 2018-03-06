@@ -36,23 +36,37 @@ class GuestStuffView(ListView):
         return Guest.objects.filter(pk=query)
 
     @staticmethod
-    def add_gift(guest_id, gift_list):
+    def add_gift(guest_id, gifts_to_add):
         guest = get_object_or_404(Guest, pk=guest_id)
-        for gift_id in gift_list:
+        for gift_id in gifts_to_add:
             gift = get_object_or_404(Gift, pk=gift_id)
-            gift.status = 'Taken'
-            gift.guest = guest
-            gift.save(update_fields=['status', 'guest'])
+            if gift.status == 'Available':
+                gift.status = 'Taken'
+                gift.guest = guest
+                gift.save(update_fields=['status', 'guest'])
+
+        return guest.pk
+
+    @staticmethod
+    def remove_gift(guest_id, gifts_to_remove):
+        guest = get_object_or_404(Guest, pk=guest_id)
+        for gift_id in gifts_to_remove:
+            gift = get_object_or_404(Gift, pk=gift_id)
+            if gift.status == 'Taken' and gift.guest == guest:
+                gift.status = 'Available'
+                gift.guest = None
+                gift.save(update_fields=['status', 'guest'])
 
         return guest.pk
 
     def post(self, request, *args, **kwargs):
         dict_ids = json.loads(request.body.decode('utf-8'))
         guest_id = dict_ids['guest_id']
-        gift_list = dict_ids['gifts']
-        print(guest_id, gift_list)
-        guest_pk = self.add_gift(guest_id, gift_list)
-        url = '/confirmation/' + str(guest_pk)
+        gifts_to_add = dict_ids['gifts_to_add']
+        gifts_to_remove = dict_ids['gifts_to_remove']
+        GuestStuffView.add_gift(guest_id, gifts_to_add)
+        GuestStuffView.remove_gift(guest_id, gifts_to_remove)
+        url = '/confirmation/' + str(guest_id)
         response = {'status': 0, 'url': url }
         return HttpResponse(json.dumps(response), content_type='application/json')
 

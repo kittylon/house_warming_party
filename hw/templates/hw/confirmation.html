@@ -5,16 +5,21 @@
 {% endblock %}
 {% for guest in object_list %}
   {% if guest.invitation.inv_type != 'Giver'%}
-    {{guest.name}}<i class="em em-santa"></i>
-    Esto es lo que nos vas a regalar:
+    {{guest.name}}!
+    esto es lo que nos vas a regalar <i class="em em-santa"></i>:
         {% for gift in gifts %}
           {% if gift.guest == guest%}
+          <div class="box">
           <h1>{{gift.name|title}}</h1>
+         </div>
           {% endif %}
         {% endfor %}
+        <a class="button is-link" href="/invitation/{{ guest.pk }}/">
+     Ir a la lista de regalos
+      </a>
     {% else %}
       <p>{{guest.invitation}}</p>
-      <i class="em em-beetle"></i>
+      😃
     {% endif %}
 {% endfor %}
 {% endblock %}
