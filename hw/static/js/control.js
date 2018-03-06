@@ -16,3 +16,7 @@ function check_mail(){
     console.log("Ich bin eine schöne error");
   });
 }
+
+function go_to_gifts(){
+  
+}

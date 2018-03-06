@@ -3,11 +3,18 @@
 {% block js %}
 <script src="/static/js/gift.js"></script>
 {% endblock %}
-Gracias por tu generosidad<i class="em em-santa"></i>
-{% for gift in object_list %}
-<div class="box">
- <h1>{{gift.name|title}}</h1>
-</div>
+{% for guest in object_list %}
+  {% if guest.invitation.inv_type != 'Giver'%}
+    {{guest.name}}<i class="em em-santa"></i>
+    Esto es lo que nos vas a regalar:
+        {% for gift in gifts %}
+          {% if gift.guest == guest%}
+          <h1>{{gift.name|title}}</h1>
+          {% endif %}
+        {% endfor %}
+    {% else %}
+      <p>{{guest.invitation}}</p>
+      <i class="em em-beetle"></i>
+    {% endif %}
 {% endfor %}
-Nos vemos en la fiesta!
 {% endblock %}
