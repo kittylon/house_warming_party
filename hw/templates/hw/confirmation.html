@@ -5,22 +5,37 @@
 {% endblock %}
 {% for guest in object_list %}
   {% if guest.invitation.inv_type != 'Giver'%}
-    {{guest.name}}!
-    esto es lo que nos vas a regalar <i class="em em-santa"></i>:
+  <div class="Cat">
+    <iframe src="https://giphy.com/embed/u98zWbe3jgJoI" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+  </div>
+
+    <section class="Container">
+      <section class="Header">
+        <h1>{{guest.name}}! 💖</h1>
+        <p>esto es lo que nos vas a regalar:</p>
+      </section>
+
+      <section class="List masonry no-margin">
         {% for gift in gifts %}
           {% if gift.guest == guest%}
-          <div class="box">
-          <h1>{{gift.name|title}}</h1>
-         </div>
+              <div class="Item">
+                <div class="Item-content">
+                  <img src="{{ gift.pic }}" />
+                </div>
+            </div>
           {% endif %}
         {% endfor %}
-        <a class="button is-link" href="/invitation/{{ guest.pk }}/">
-     Ir a la lista de regalos
+      </section>
+    </section>
+    <section class="Container">
+      <a class="Button black margin-bottom"  href="/invitation/{{ guest.pk }}/">
+        volver a seleccionar regalos
       </a>
+    </section>
+
     {% else %}
       <p>{{guest.invitation}}</p>
       😃
     {% endif %}
 {% endfor %}
-<iframe src="https://giphy.com/embed/u98zWbe3jgJoI" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/pizza-i-love-is-life-u98zWbe3jgJoI">via GIPHY</a></p>
 {% endblock %}

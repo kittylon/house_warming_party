@@ -1,7 +1,7 @@
 window.gifts_to_add = [];
 window.gifts_to_remove = [];
 window.removed_gifts = []
-var new_gifts_id = window.gifts_id.slice()
+var new_gifts_id = gifts_id.slice()
 
 function hide_button(button_id){
   var bye_button = document.getElementById(button_id);
@@ -51,26 +51,25 @@ function remove_gift(gift_id){
 }
 
 function confirm_gifts(guest_id){
-  // confirm("Confirmars " + gifts_to_remove);
   console.log('id list', new_gifts_id)
   console.log('to remove', gifts_to_remove)
   console.log('to add', gifts_to_add)
+
   if (new_gifts_id.length  > 0) {
-    alert('you can add')
-  } else {
-    alert('nope')
+    var move_on = confirm("Estás seguro?❤");
+    if (move_on){
+      axios.post('/invitation/' + guest_id + '/', {
+        'guest_id': guest_id,
+        'gifts_to_add' : gifts_to_add,
+        'gifts_to_remove': gifts_to_remove
+      })
+      .then(function (response) {
+        console.log(response.data.url);
+        window.location = response.data.url;
+      })
+    }
   }
-  /*
-  alert(removed_gifts);
-  alert(gifts_to_add);
-  alert(gifts_to_remove);
-  axios.post('/invitation/' + guest_id + '/', {
-    'guest_id': guest_id,
-    'gifts_to_add' : gifts_to_add,
-    'gifts_to_remove': gifts_to_remove
-  })
-  .then(function (response) {
-    console.log(response.data.url);
-    window.location = response.data.url;
-  })*/
+  else {
+    alert('No seas tacaño💔')
+  }
 }
