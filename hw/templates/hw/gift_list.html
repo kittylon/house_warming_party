@@ -1,10 +1,10 @@
-{% extends "hw/base.html" %}
-{% block title %}
-  HWP Invitation
-{% endblock %}
+
 {% block content %}
-    No nos casamos pero tenemos lista de regalos 😃
+<section class="Container">
+  <section class="List masonry">
     {% for gift in gifts %}
       {% include "hw/gift.html"%}
     {% endfor %}
+  </section>
+</section>
 {% endblock  %}

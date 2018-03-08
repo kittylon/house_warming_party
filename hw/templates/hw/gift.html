@@ -1,25 +1,26 @@
-{% extends "hw/base.html" %}
-  {% block title %}
-    Guest List
-  {% endblock %}
+
 {% block content %}
-   <div class="box">
-    <h1>Nombre: {{gift.name|title}}</h1>
-    <p>Estado: {{gift.status}}</p>
-    <p>Precio: {{gift.price}}</p>
-    {% if gift.status == 'Available'%}
-      <a class="button is-success" id="add_{{gift.pk}}" onclick="add_gift({{gift.pk}})">
-      <i class="fas fa-check"></i>Agregar</a>
-      <a class="button is-danger is-outlined hidden" id="rmv_{{gift.pk}}" onclick="remove_gift({{gift.pk}})">
-      Eliminar<i class="fas fa-times"></i></a>
-    {% elif gift.guest.id == guest.pk %}
-      <p>Lo llevas tú!</p>
-      <a class="button is-success hidden" id="add_{{gift.pk}}" onclick="add_gift({{gift.pk}})">
-      <i class="fas fa-check"></i>Conservar</a>
-      <a class="button is-danger is-outlined" id="rmv_{{gift.pk}}" onclick="remove_gift({{gift.pk}})">
-      Eliminar<i class="fas fa-times"></i></a>
-    {% else %}
-    <p> lo va a llevar {{gift.guest}}</p>
-    {% endif %}
+   <div class="Item">
+     <div class="Item-content">
+       <img src="{{ gift.pic }}" />
+       <div id="cover_{{gift.pk}}" class="{% if gift.status == 'Taken' %}  {% if gift.guest.id == guest.pk %} cover added {% else %} cover-blocked {% endif %} {% else %} cover {% endif %}">
+          <p class="Add">{{gift.name|title}}</p>
+
+          {% if gift.status == 'Available'%}
+            <a class="Button green" id="add_{{gift.pk}}" onclick="add_gift({{gift.pk}})">
+            Agregar 😄</a>
+            <a class="Button hidden red" id="rmv_{{gift.pk}}" onclick="remove_gift({{gift.pk}})">
+            Eliminar 😓</a>
+          {% elif gift.guest.id == guest.pk %}
+            <p>Lo llevas vos!</p>
+            <a class="Button green hidden" id="add_{{gift.pk}}" onclick="add_gift({{gift.pk}})">
+             Conservar 😅</a>
+            <a class="Button is-outlined red" id="rmv_{{gift.pk}}" onclick="remove_gift({{gift.pk}})">
+            Eliminar 😓</a>
+          {% else %}
+          <p> lo va a llevar {{gift.guest}}</p>
+          {% endif %}
+        </div>
+    </div>
   </div>
 {% endblock  %}

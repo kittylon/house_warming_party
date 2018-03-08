@@ -1,31 +1,31 @@
-{% extends "hw/base.html" %}
-  {% block title %}
-    Guest Info
-  {% endblock %}
-{% block content %}
-    <h1>Hola {{guest.name|title}}!</h1>
-    <p>{{guest.invitation}}</p>
-    {% if guest.invitation.inv_type != 'Giver'%}
-    {% for gift in gifts %}
-    <div class="box">
-     <h1>Nombre: {{gift.name|title}}</h1>
-     <p>Estado: {{gift.status}}</p>
-     <p>Precio: {{gift.price}}</p>
-     {% if gift.status == 'Available'%}
-       <a class="button is-success" id="add_{{gift.pk}}" onclick="add_gift({{gift.pk}})">
-       <i class="fas fa-check"></i>Agregar</a>
-       <a class="button is-danger is-outlined hidden" id="rmv_{{gift.pk}}" onclick="remove_gift({{gift.pk}})">
-       Eliminar<i class="fas fa-times"></i></a>
-     {% elif gift.guest.id == guest.pk %}
-       <p>Lo llevas tú!</p>
-       <a class="button is-danger is-outlined" id="rmv_{{gift.pk}}" onclick="remove_gift({{gift.pk}})">
-       Eliminar<i class="fas fa-times"></i></a>
-       <a class="button is-success hidden" id="add_{{gift.pk}}" onclick="add_gift({{gift.pk}})">
-       <i class="fas fa-check"></i>Agregar</a>
-     {% else %}
-     <p> lo va a llevar {{gift.guest}}</p>
-     {% endif %}
-   </div>
-    {% endfor %}
-    {% endif %}
-{% endblock  %}
+function confirm_gifts(guest_id){
+  var total_gifts = parseInt(gift_counter) + gifts_to_add.length - gifts_to_remove.length;
+  alert("regalos anteriores" + gift_counter);
+  alert("Total: " + total_gifts);
+  alert("A agregar: " + gifts_to_add.length);
+  alert("A eliminar: " + gifts_to_remove.length);
+  if (total_gifts <= 0){
+    alert("No seas tacaño💔");
+  }
+  else {
+    axios.post('/invitation/' + guest_id + '/', {
+      'guest_id': guest_id,
+      'gifts_to_add' : gifts_to_add,
+      'gifts_to_remove': gifts_to_remove
+    })
+    .then(function (response) {
+      console.log(response.data.url);
+      window.location = response.data.url;
+    })
+  }
+}
+
+def get(self, request, *args, **kwargs):
+    gifts_id = []
+    query = self.kwargs['query']
+    object_list =  Guest.objects.filter(pk=query)
+    gift_counter = self.count_prev_gifts(query)
+    for gift in gift_counter:
+        gifts_id.append(gift.pk)
+    print(gifts_id)
+    return render(request, self.template_name, { 'gift_counter': gift_counter, 'gifts_id': gifts_id})

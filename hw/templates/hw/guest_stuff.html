@@ -1,12 +1,17 @@
 {% extends 'hw/base.html' %}
 {% block content%}
 {% block js %}
+<script>
+    window.gifts_id = {{gifts_id|safe}};
+</script>
 <script src="/static/js/gift.js"></script>
 {% endblock %}
 {% for guest in object_list %}
   {% include "hw/guest.html"%}
   {% if guest.invitation.inv_type != 'Giver'%}
-  <a class="button is-medium is-danger bd-rainbow" onclick="confirm_gifts({{guest.id}})">Confirmar 🤗</a>
+  <aside class="FixedBar">
+    <a class="Button blocked" onclick="confirm_gifts({{guest.id}})">Confirmar 🤗 </a>
+  </aside>
   {% else %}
   😃
   {% endif %}

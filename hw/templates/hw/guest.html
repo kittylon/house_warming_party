@@ -3,8 +3,12 @@
     Guest Info
   {% endblock %}
 {% block content %}
+<section class="Container">
+  <section class="Header">
     <h1>Hola {{guest.name|title}}!</h1>
-    <p>{{guest.invitation}}</p>
+    <p>{{guest.invitation}} 😁</p>
+  </section>
+</section>
     {% if guest.invitation.inv_type != 'Giver'%}
       {% include "hw/gift_list.html"%}
     {% endif %}

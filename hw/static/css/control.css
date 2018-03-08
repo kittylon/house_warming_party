@@ -1,52 +1,16 @@
-h1 a {
-    color: #6600ff  ;
-    font-family: 'Lobster';
-}
-h2 a{
-    color: #6f10a5  ;
-    font-family: 'Lobster';
+
+
+h1, h2 {
+  color: white !important;
+  text-shadow: 1px 1px #0000001a;
 }
 
-.hidden{
-  display: none !important;
+h1 {
+  font-size: 3rem !important;
 }
 
-.blocked{
-  border: 1px solid red !important;
-}
-
-.page-header {
-  background: #466368;
-  background: linear-gradient(to right bottom, #3af4ee, #6f10a5);
-}
-
-.page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
-    color: #ffffff;
-    font-size: 36pt;
-    text-decoration: none;
-}
-
-invitation-form textarea, .invitation-form input {
-    width: 100%;
-}
-
-.top-menu, .top-menu:hover, .top-menu:visited {
-    color: #ffffff;
-    float: right;
-    font-size: 26pt;
-    margin-right: 20px;
-}
-
-.invitation {
-    margin-bottom: 70px;
-}
-
-.invitation h1 a, .invitation h1 a {
-    color: #6600ff;
-}
-
-.event {
-    color: #828282;
+h2 {
+  font-size: 2rem !important;
 }
 
 .input {
@@ -63,206 +27,24 @@ invitation-form textarea, .invitation-form input {
   transition: transform .2s ease-out;
 }
 
+.input::placeholder {
+  color: white;
+}
+
 .input:focus, .input:active, input:hover {
   box-shadow: none;
   border: 3px solid white !important;
   transform: scale(1.05);
 }
 
+.error {
+  margin-top: 2rem;
+}
+
 body {
   background-color: #ff8888;
   -webkit-animation: colorChange 20s linear 0s infinite;
   animation: colorChange 20s linear 0s infinite;
-}
-
-.Container {
-  padding: 1rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  position: relative;
-  width: 100%;
-}
-.--heightCenter {
-  top: 50%;
-  transform: translateY(-80%);
-}
-.Block {
-  margin-top: 1rem;
-}
-.Button {
-  font-size: 1rem;
-  background: transparent;
-  color: #EFF6EE;
-  padding: .5rem;
-  font-weight: bold;
-  border: 4px solid #EFF6EE;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: transform .3s ease;
-  margin-right: 1rem;
-  margin-top: 1rem;
-}
-
-
-.Button:hover {
-  color: white;
-  transform: scale(1.03);
-}
-
-.Button.red:hover {
-  border-color: #ff9696;
-  color: #ff9696;
-}
-.Button.red:hover > .fa {
-  color: #ff4e4e;
-}
-
-.Button.green:hover {
-  border-color: #7dda7d;
-  color: #7dda7d;
-}
-.Button.green:hover > .fa {
-  color: #7dda7d;
-}
-
-.List {
-  margin-bottom: 12rem;
-}
-.Item {
-  cursor: pointer;
-  position: relative;
-  border-radius: 5px;
-  margin-bottom: 1rem;
-}
-.Item-content img {
-  display: inline-block;
-  width: 97%;
-  border-radius: 5px;
-}
-.masonry {
-  column-count: 1;
-  column-gap: 0px;
-}
-.cover, .cover-blocked {
-  top: 0;
-  left: 0;
-  position: absolute;
-  height: 100%;
-  width: 98%;
-  z-index: 1000;
-  transition: all .4s ease-in-out;
-  padding: 1rem;
-  color: transparent;
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-  align-items: left;
-  border-radius: 5px;
-}
-.cover:hover, .cover.added {
-  background: #e6dada; /* fallback for old browsers */
-  background: -webkit-linear-gradient(to bottom, transparent, #274046); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to bottom, transparent, #274046);
-  color: #EFF6EE;
-}
-
-.cover.added > .Button {
-  display: block;
-}
-
-.cover:hover > .Button {
-  display: block;
-}
-
-.cover.added {
-  border: 6px solid white;
-}
-
-.cover.added:hover {
-  cursor: auto;
-}
-
-.cover-blocked {
-  background-color: rgba(152, 152, 152, 0.83);
-  border: none;
-  cursor: not-allowed;
-}
-.cover-blocked:hover {
-  border: none;
-  cursor: not-allowed;
-  background-color: rgba(152, 152, 152, 0.83) !important;
-}
-.cover > .Button {
-  display: none;
-}
-
-.Add {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-.Title {
-  font-size: 4rem;
-  margin-bottom: 2rem;
-}
-.FixedBar {
-  width: 100%;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  padding: 1rem;
-  background: rgba(0,0,0,0.87);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 3000;
-}
-
-.Header > p {
-  font-size: 2.5rem;
-}
-.Header > h1 {
-  font-size: 3rem;
-}
-
-@media screen and (min-width: 481px) {
-  .masonry {
-    column-count: 2;
-    column-gap: 5px;
-  }
-}
-@media screen and (min-width: 981px) {
-
-  .masonry {
-    column-count: 3;
-    column-gap: 10px;
-  }
-  .Block {
-    margin-top: 2rem;
-  }
-  .Button {
-    font-size: 1rem;
-    padding: .5rem;
-    border: 3px solid #EFF6EE;
-    border-radius: 4px;
-    margin-right: 1rem;
-  }
-}
-@media screen and (min-width: 1281px) {
-
-  .Block {
-    margin-top: 3rem;
-  }
-  .Button {
-    font-size: 2rem;
-    margin-right: 2rem;
-  }
-  .Title {
-    font-size: 4rem;
-  }
-  .FixedBar {
-    padding: 2rem;
-  }
 }
 
 @-webkit-keyframes colorChange {

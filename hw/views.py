@@ -22,6 +22,7 @@ class InvitationView(TemplateView):
 class ConfirmationView(ListView):
     template_name ="hw/confirmation.html"
     model = Guest
+    prev_gifts = 0
 
     def get_queryset(self):
         query = self.kwargs['query']
@@ -31,9 +32,19 @@ class GuestStuffView(ListView):
     template_name = "hw/guest_stuff.html"
     model = Guest
 
-    def get_queryset(self):
+    def get(self, request, *args, **kwargs):
         query = self.kwargs['query']
-        return Guest.objects.filter(pk=query)
+        object_list =  Guest.objects.filter(pk=query)
+        gifts_id = self.count_prev_gifts(query)
+        return render(request, self.template_name, { 'gifts_id': gifts_id, 'object_list': object_list} )
+
+    @staticmethod
+    def count_prev_gifts(guest_id):
+        gifts_id = []
+        prev_gifts = Gift.objects.filter(guest_id=str(guest_id))
+        for gift in prev_gifts:
+            gifts_id.append(gift.pk)
+        return gifts_id
 
     @staticmethod
     def add_gift(guest_id, gifts_to_add):
@@ -64,6 +75,8 @@ class GuestStuffView(ListView):
         guest_id = dict_ids['guest_id']
         gifts_to_add = dict_ids['gifts_to_add']
         gifts_to_remove = dict_ids['gifts_to_remove']
+        prev_gifts = GuestStuffView.count_prev_gifts(str(guest_id))
+        print(prev_gifts)
         GuestStuffView.add_gift(guest_id, gifts_to_add)
         GuestStuffView.remove_gift(guest_id, gifts_to_remove)
         url = '/confirmation/' + str(guest_id)
