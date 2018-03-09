@@ -16,4 +16,4 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "hwproject.settings")
 application = get_wsgi_application()
 
 from hwproject.wsgi import hw
-application = hwproject(application)
+application = hw(application)

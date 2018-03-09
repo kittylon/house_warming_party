@@ -72,7 +72,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'hwproject.wsgi.application'
+WSGI_APPLICATION = None
 
 
 # Database
