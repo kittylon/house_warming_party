@@ -1,2 +1,20 @@
-[requires]
-python_full_version = "3.6.3"
+{
+    "_meta": {
+        "hash": {
+            "sha256": "efbe76c1713ee07bde85298ddc2795f15aa197dc0219a642d13f1594663586c9"
+        },
+        "pipfile-spec": 6,
+        "requires": {
+            "python_full_version": "3.6.4"
+        },
+        "sources": [
+            {
+                "name": "pypi",
+                "url": "https://pypi.python.org/simple",
+                "verify_ssl": true
+            }
+        ]
+    },
+    "default": {},
+    "develop": {}
+}
